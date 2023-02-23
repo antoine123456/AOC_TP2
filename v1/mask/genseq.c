@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+// DONE int -> u8
+#include "types.h"
 //
 unsigned randxy(unsigned x, unsigned y)
 {
@@ -25,7 +26,7 @@ int main(int argc, char **argv)
   //
   // const char bases[4] = "ATCG"; 
   // DONE compression
-  const char bases[4] = "00011011"; 
+  const char bases[8] = "00011011"; 
   
   //
   FILE *fp = fopen(argv[1], "wb");
@@ -37,10 +38,10 @@ int main(int argc, char **argv)
   //Generate random DNA sequence
   // DONE modif type A -> 00, etc
   for (unsigned long long i = 0; i < len; i++){
-    rng = randxy(0, 4)*2
-    printf(fp, "%c", bases[rng:rng+1]);
-    fprintf(fp, "%c", bases[rng:rng+1]);
+    rng = randxy(0, 4)*2;
+    fprintf(fp, "%c%c",bases[rng],bases[rng+1]);
   }
+
   //Newline at EOF
   fprintf(fp, "\n");
   

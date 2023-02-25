@@ -80,8 +80,12 @@ seq_t *load_seq(const char *fname)
 
   // Allocate sequence
   seq_t *s = malloc(sizeof(seq_t));
+  int err = posix_memalign((void **)&s,sizeof(seq_t),sizeof(seq_t));
+  if(err){
+    err_id = ERR_MALLOC_NULL;
+  }
   // DONE allign
-  __builtin_assume_aligned(s,sizeof(seq_t));
+  // __builtin_assume_aligned(s,sizeof(seq_t));
 
 
   if (!s)
@@ -95,7 +99,7 @@ seq_t *load_seq(const char *fname)
 
   // Allocating memory for sequence bases
   s->bases = malloc(sizeof(u8) * sb.st_size);
-  // DONE allign
+
   __builtin_assume_aligned(s->bases,sizeof(u8)*sb.st_size);
 
   if (!s->bases)
@@ -172,7 +176,7 @@ void measure_mask(const char *title,void kernel(const u8 *, const u8 *, u8 *,u8)
     err_id = ERR_MALLOC_NULL;
   }
   // DONE bultin
-  __builtin_assume_aligned(cmp_mask,sizeof(u8)*n);
+  // __builtin_assume_aligned(cmp_mask,sizeof(u8)*n);
 
   FILE *fp = fopen("mask.dat", "wb");
 

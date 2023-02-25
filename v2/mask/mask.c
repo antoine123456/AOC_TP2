@@ -53,7 +53,7 @@ const char *err_msg[] = {
 void error()
 {
   //
-  printf("Error (%llu): %s\n", err_id, err_msg[err_id]);
+  printf("Error (%d): %s\n", err_id, err_msg[err_id]);
 
   //
   exit(-1);

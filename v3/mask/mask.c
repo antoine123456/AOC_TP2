@@ -147,35 +147,31 @@ void release_seq(seq_t *s)
   else
     err_id = ERR_NULL_POINTER;
 }
-// r_
-// DONE pramga parallel
-#pragma omp parallel for
-void mask(const u8 * restrict a, const u8 * restrict b, u8 *c, // DONE u64 -> u8
-          u8 n)
+
+// DONE pramga parallel 64 -> u8
+#pramga omp parallel for
+void mask(const u8 *a, const u8 *b, u8 *c, u8 n)
 {
   //DONE u64 -> u8
   for (u8 i = 0; i < n; i++)
     c[i] = a[i] ^ b[i];
 }
 
-//DONE u64 -> u8
+// DONE u64 -> u8
 void measure_mask(const char *title,void kernel(const u8 *, const u8 *, u8 *,u8),u8 *s1,u8 *s2,u8 n)
 {
   u8 r = 3;
   f64 elapsed = 0.0;
   struct timespec t1, t2;
-
   u8 *cmp_mask = malloc(sizeof(u8) * n);
-  __builtin_assume_aligned(cmp_mask, sizeof(u8) * n);
-
+  // DONE bultin
+  __builtin_assume_aligned(cmp_mask,sizeof(u8)*n);
   FILE *fp = fopen("mask.dat", "wb");
-
   if (!fp)
   {
     err_id = ERR_CREAT_FILE;
     error();
   }
-
   do
   {
     // Warmup

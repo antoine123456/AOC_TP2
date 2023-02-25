@@ -167,10 +167,10 @@ void measure_mask(const char *title,void kernel(const u8 *, const u8 *, u8 *,u8)
 
   u8 *cmp_mask = malloc(sizeof(u8) * n);
   // FIXME posix memalign
-  /* int err = posix_memalign((void **)&cmp_mask,sizeof(u8),n*sizeof(u8));
+  int err = posix_memalign((void **)&cmp_mask,sizeof(u8),n*sizeof(u8));
   if(err){
     err_id = ERR_MALLOC_NULL;
-  } */
+  }
   // DONE bultin
   __builtin_assume_aligned(cmp_mask,sizeof(u8)*n);
 

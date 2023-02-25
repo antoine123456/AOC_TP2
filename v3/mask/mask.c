@@ -81,8 +81,7 @@ seq_t *load_seq(const char *fname)
   // Allocate sequence
   seq_t *s = malloc(sizeof(seq_t));
   // DONE allign
-  __builtin_assume_aligned(s,sizeof(seq_t));
-
+  __builtin_assume_aligned(s, sizeof(seq_t));
 
   if (!s)
   {
@@ -96,7 +95,7 @@ seq_t *load_seq(const char *fname)
   // Allocating memory for sequence bases
   s->bases = malloc(sizeof(u8) * sb.st_size);
   // DONE allign
-  __builtin_assume_aligned(s->bases,sizeof(u8)*sb.st_size);
+  __builtin_assume_aligned(s->bases, sizeof(u8) * sb.st_size);
 
   if (!s->bases)
   {
@@ -148,35 +147,26 @@ void release_seq(seq_t *s)
   else
     err_id = ERR_NULL_POINTER;
 }
-
+// r_
 // DONE pramga parallel
-#pramga 
-void mask(const u8 *a, const u8 *b, u8 *c, // DONE u64 -> u8
+#pragma omp parallel for
+void mask(const u8 * restrict a, const u8 * restrict b, u8 *c, // DONE u64 -> u8
           u8 n)
 {
-  //
-  for ( // DONE u64 -> u8
-      u8 i = 0; i < n; i++)
+  //DONE u64 -> u8
+  for (u8 i = 0; i < n; i++)
     c[i] = a[i] ^ b[i];
 }
 
-//
-void measure_mask(const char *title,
-                  void kernel(const u8 *, const u8 *, u8 *, // DONE u64 -> u8
-                              u8),
-                  u8 *s1,
-                  u8 *s2,
-                  // DONE u64 -> u8
-                  u8 n)
+//DONE u64 -> u8
+void measure_mask(const char *title,void kernel(const u8 *, const u8 *, u8 *,u8),u8 *s1,u8 *s2,u8 n)
 {
-  // DONE u64 -> u8
   u8 r = 3;
   f64 elapsed = 0.0;
   struct timespec t1, t2;
 
   u8 *cmp_mask = malloc(sizeof(u8) * n);
-  // DONE bultin
-  __builtin_assume_aligned(cmp_mask,sizeof(u8)*n);
+  __builtin_assume_aligned(cmp_mask, sizeof(u8) * n);
 
   FILE *fp = fopen("mask.dat", "wb");
 
@@ -194,8 +184,7 @@ void measure_mask(const char *title,
     //
     clock_gettime(CLOCK_MONOTONIC_RAW, &t1);
 
-    for ( // DONE u64 -> u8
-        u8 i = 0; i < r; i++)
+    for (u8 i = 0; i < r; i++)
       kernel(s1, s2, cmp_mask, n);
 
     clock_gettime(CLOCK_MONOTONIC_RAW, &t2);

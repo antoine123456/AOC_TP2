@@ -149,24 +149,16 @@ void release_seq(seq_t *s)
     err_id = ERR_NULL_POINTER;
 }
 
-//
-void mask(const u8 *a, const u8 *b, u8 *c, // DONE u64 -> u8
-          u8 n)
+// DONE u64 -> u8
+void mask(const u8 *a, const u8 *b, u8 *c, u8 n)
 {
-  //
-  for ( // DONE u64 -> u8
-      u8 i = 0; i < n; i++)
+  //DONE u64 -> u8
+  for (u8 i = 0; i < n; i++)
     c[i] = a[i] ^ b[i];
 }
 
-//
-void measure_mask(const char *title,
-                  void kernel(const u8 *, const u8 *, u8 *, // DONE u64 -> u8
-                              u8),
-                  u8 *s1,
-                  u8 *s2,
-                  // DONE u64 -> u8
-                  u8 n)
+//DONE u64 -> u8
+void measure_mask(const char *title,void kernel(const u8 *, const u8 *, u8 *,u8),u8 *s1,u8 *s2,u8 n)
 {
   // DONE u64 -> u8
   u8 r = 3;
@@ -174,6 +166,11 @@ void measure_mask(const char *title,
   struct timespec t1, t2;
 
   u8 *cmp_mask = malloc(sizeof(u8) * n);
+  // FIXME posix memalign
+  /* int err = posix_memalign((void **)&cmp_mask,sizeof(u8),n*sizeof(u8));
+  if(err){
+    err_id = ERR_MALLOC_NULL;
+  } */
   // DONE bultin
   __builtin_assume_aligned(cmp_mask,sizeof(u8)*n);
 

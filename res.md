@@ -8,6 +8,11 @@
 - u64 -> u8
 - doubles -> float
 
+- ==> ajouter : static & const & inline & restrict 
+
 # v3 ajout de parallelisation
 
 $((100*2**20))
+
+
+u8* const restric

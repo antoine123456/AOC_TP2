@@ -149,10 +149,9 @@ void release_seq(seq_t *s)
     err_id = ERR_NULL_POINTER;
 }
 
-// DONE pramga parallel
-#pramga 
-void mask(const u8 *a, const u8 *b, u8 *c, // DONE u64 -> u8
-          u8 n)
+// DONE pramga parallel 64 -> u8
+#pramga omp parallel for
+void mask(const u8 *a, const u8 *b, u8 *c, u8 n)
 {
   //
   for ( // DONE u64 -> u8
@@ -160,32 +159,21 @@ void mask(const u8 *a, const u8 *b, u8 *c, // DONE u64 -> u8
     c[i] = a[i] ^ b[i];
 }
 
-//
-void measure_mask(const char *title,
-                  void kernel(const u8 *, const u8 *, u8 *, // DONE u64 -> u8
-                              u8),
-                  u8 *s1,
-                  u8 *s2,
-                  // DONE u64 -> u8
-                  u8 n)
+// DONE u64 -> u8
+void measure_mask(const char *title,void kernel(const u8 *, const u8 *, u8 *,u8),u8 *s1,u8 *s2,u8 n)
 {
-  // DONE u64 -> u8
   u8 r = 3;
   f64 elapsed = 0.0;
   struct timespec t1, t2;
-
   u8 *cmp_mask = malloc(sizeof(u8) * n);
   // DONE bultin
   __builtin_assume_aligned(cmp_mask,sizeof(u8)*n);
-
   FILE *fp = fopen("mask.dat", "wb");
-
   if (!fp)
   {
     err_id = ERR_CREAT_FILE;
     error();
   }
-
   do
   {
     // Warmup

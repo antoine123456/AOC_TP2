@@ -1104,3 +1104,126 @@ mask.c:141:7: missed: statement clobbers memory: free (_25);
 mask.c:253:3: missed: statement clobbers memory: free (s1_16);
 mask.c:141:7: missed: statement clobbers memory: free (_24);
 mask.c:255:3: missed: statement clobbers memory: free (s2_19);
+mask.c:56:3: optimized:   Inlining printf/15 into error/5555 (always_inline).
+mask.c:117:23: optimized:   Inlining fread/21 into load_seq/5556 (always_inline).
+mask.c:75:7: optimized:   Inlining stat/39 into load_seq/5556 (always_inline).
+mask.c:214:3: optimized:   Inlining printf/15 into measure_mask/5559 (always_inline).
+mask.c:185:5: note: Considering inline candidate error/5555.
+mask.c:185:5: missed:   will not early inline: measure_mask/5559->error/5555, call is cold and code would grow by 8
+mask.c:246:3: optimized:   Inlining printf/15 into main/5560 (always_inline).
+mask.c:243:12: optimized:   Inlining printf/15 into main/5560 (always_inline).
+mask.c:227:12: optimized:   Inlining printf/15 into main/5560 (always_inline).
+mask.c:254:3: note: Considering inline candidate release_seq/5557.
+mask.c:254:3: optimized:  Inlining release_seq/5557 into main/5560.
+mask.c:252:3: note: Considering inline candidate release_seq/5557.
+mask.c:252:3: optimized:  Inlining release_seq/5557 into main/5560.
+mask.c:249:3: note: Considering inline candidate measure_mask/5559.
+mask.c:249:3: missed:   will not early inline: main/5560->measure_mask/5559, growth 55 exceeds --param early-inlining-insns
+mask.c:239:5: note: Considering inline candidate error/5555.
+mask.c:239:5: missed:   will not early inline: main/5560->error/5555, call is cold and code would grow by 8
+mask.c:236:15: note: Considering inline candidate load_seq/5556.
+mask.c:236:15: missed:   will not early inline: main/5560->load_seq/5556, growth 62 exceeds --param early-inlining-insns
+mask.c:233:5: note: Considering inline candidate error/5555.
+mask.c:233:5: missed:   will not early inline: main/5560->error/5555, call is cold and code would grow by 8
+mask.c:230:15: note: Considering inline candidate load_seq/5556.
+mask.c:230:15: missed:   will not early inline: main/5560->load_seq/5556, growth 62 exceeds --param early-inlining-insns
+mask.c:255:3: missed:   not inlinable: main/5560 -> free/5573, function body not available
+mask.c:141:7: missed:   not inlinable: main/5560 -> free/5573, function body not available
+mask.c:253:3: missed:   not inlinable: main/5560 -> free/5573, function body not available
+mask.c:141:7: missed:   not inlinable: main/5560 -> free/5573, function body not available
+mask.c:249:3: missed:   not inlinable: main/5560 -> measure_mask/5559, call is unlikely and code size would grow
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed:   not inlinable: main/5560 -> __printf_chk/5562, function body not available
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed:   not inlinable: main/5560 -> __printf_chk/5562, function body not available
+mask.c:239:5: missed:   not inlinable: main/5560 -> error/5555, call is unlikely and code size would grow
+mask.c:236:15: missed:   not inlinable: main/5560 -> load_seq/5556, --param max-inline-insns-auto limit reached
+mask.c:233:5: missed:   not inlinable: main/5560 -> error/5555, call is unlikely and code size would grow
+mask.c:230:15: missed:   not inlinable: main/5560 -> load_seq/5556, --param max-inline-insns-auto limit reached
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed:   not inlinable: main/5560 -> __printf_chk/5562, function body not available
+mask.c:219:3: missed:   not inlinable: measure_mask/5559 -> fclose/5566, function body not available
+mask.c:218:3: missed:   not inlinable: measure_mask/5559 -> free/5573, function body not available
+mask.c:216:3: missed:   not inlinable: measure_mask/5559 -> fwrite/5575, function body not available
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed:   not inlinable: measure_mask/5559 -> __printf_chk/5562, function body not available
+mask.c:200:5: missed:   not inlinable: measure_mask/5559 -> clock_gettime/5574, function body not available
+mask.c:194:5: missed:   not inlinable: measure_mask/5559 -> clock_gettime/5574, function body not available
+mask.c:185:5: missed:   not inlinable: measure_mask/5559 -> error/5555, call is unlikely and code size would grow
+mask.c:180:14: missed:   not inlinable: measure_mask/5559 -> fopen/5565, function body not available
+mask.c:176:18: missed:   not inlinable: measure_mask/5559 -> malloc/5563, function body not available
+mask.c:141:7: missed:   not inlinable: release_seq/5557 -> free/5573, function body not available
+mask.c:120:3: missed:   not inlinable: load_seq/5556 -> fclose/5566, function body not available
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:297:10: missed:   not inlinable: load_seq/5556 -> __fread_alias/5572, function body not available
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:295:9: missed:   not inlinable: load_seq/5556 -> __fread_chk_warn/5571, function body not available
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:292:9: missed:   not inlinable: load_seq/5556 -> __fread_chk/5570, function body not available
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:290:8: missed:   not inlinable: load_seq/5556 -> __builtin_constant_p/5569, mismatched arguments
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:287:7: missed:   not inlinable: load_seq/5556 -> __builtin_object_size/5568, function body not available
+mask.c:108:14: missed:   not inlinable: load_seq/5556 -> fopen/5565, function body not available
+mask.c:97:14: missed:   not inlinable: load_seq/5556 -> malloc/5563, function body not available
+mask.c:82:14: missed:   not inlinable: load_seq/5556 -> malloc/5563, function body not available
+/usr/include/x86_64-linux-gnu/sys/stat.h:455:10: missed:   not inlinable: load_seq/5556 -> __xstat/5567, function body not available
+mask.c:59:3: missed:   not inlinable: error/5555 -> exit/5561, function body not available
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed:   not inlinable: error/5555 -> __printf_chk/5562, function body not available
+Unit growth for small function inlining: 232->232 (0%)
+
+Inlined 9 calls, eliminated 0 functions
+
+consider run-time aliasing test between *_2 and *_6
+consider run-time aliasing test between *_4 and *_6
+mask.c:157:3: optimized: loop vectorized using 32 byte vectors
+mask.c:157:3: optimized:  loop versioned for vectorization because of possible aliasing
+mask.c:153:6: note: vectorized 1 loops in function.
+mask.c:159:13: missed: failed: evolution of base is not affine.
+mask.c:159:20: missed: failed: evolution of base is not affine.
+mask.c:159:10: missed: failed: evolution of base is not affine.
+mask.c:153:6: optimized: loop with 6 iterations completely unrolled (header execution count 28163400)
+mask.c:157:3: note: considering unrolling loop 2 at BB 19
+considering unrolling loop with constant number of iterations
+considering unrolling loop with runtime-computable number of iterations
+mask.c:157:3: optimized: loop unrolled 7 times
+mask.c:157:3: note: considering unrolling loop 4 at BB 17
+considering unrolling loop with constant number of iterations
+considering unrolling loop with runtime-computable number of iterations
+mask.c:157:3: optimized: loop unrolled 7 times
+mask.c:158:17: note: considering unrolling loop 3 at BB 7
+considering unrolling loop with constant number of iterations
+considering unrolling loop with runtime-computable number of iterations
+mask.c:158:17: optimized: loop unrolled 7 times
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed: statement clobbers memory: __printf_chk (1, "Error (%llu): %s\n", _2, _3);
+mask.c:59:3: missed: statement clobbers memory: exit (-1);
+/usr/include/x86_64-linux-gnu/sys/stat.h:455:10: missed: statement clobbers memory: _29 = __xstat (1, fname_12(D), &sb);
+mask.c:82:14: missed: statement clobbers memory: s_15 = malloc (16);
+mask.c:97:14: missed: statement clobbers memory: _4 = malloc (_3);
+mask.c:108:14: missed: statement clobbers memory: fp_20 = fopen (fname_12(D), "rb");
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:297:10: missed: statement clobbers memory: _34 = __fread_alias (_7, 1, _6, fp_20);
+mask.c:120:3: missed: statement clobbers memory: fclose (fp_20);
+mask.c:141:7: missed: statement clobbers memory: free (_1);
+mask.c:203:3: missed: couldn't vectorize loop
+mask.c:203:3: missed: not vectorized: number of iterations cannot be computed.
+mask.c:196:5: missed: couldn't vectorize loop
+mask.c:198:7: missed: statement clobbers memory: kernel_26(D) (s1_27(D), s2_28(D), cmp_mask_21, _2);
+mask.c:163:6: note: vectorized 0 loops in function.
+mask.c:198:7: missed: statement clobbers memory: kernel_26(D) (s1_27(D), s2_28(D), cmp_mask_21, _2);
+mask.c:176:18: missed: statement clobbers memory: cmp_mask_21 = malloc (_1);
+mask.c:180:14: missed: statement clobbers memory: fp_23 = fopen ("mask.dat", "wb");
+mask.c:185:5: missed: statement clobbers memory: error ();
+mask.c:191:5: missed: statement clobbers memory: kernel_26(D) (s1_27(D), s2_28(D), cmp_mask_21, _2);
+mask.c:194:5: missed: statement clobbers memory: clock_gettime (4, &t1);
+mask.c:198:7: missed: statement clobbers memory: kernel_26(D) (s1_27(D), s2_28(D), cmp_mask_21, _2);
+mask.c:200:5: missed: statement clobbers memory: clock_gettime (4, &t2);
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed: statement clobbers memory: __printf_chk (1, "%25s; 0x%08x; %15.3lf; %15.3lf\n", title_34(D), _14, _12, _11);
+mask.c:216:3: missed: statement clobbers memory: fwrite (cmp_mask_21, 1, _1, fp_23);
+mask.c:218:3: missed: statement clobbers memory: free (cmp_mask_21);
+mask.c:219:3: missed: statement clobbers memory: fclose (fp_23);
+mask.c:196:5: note: considering unrolling loop 2 at BB 6
+considering unrolling loop with constant number of iterations
+considering unrolling loop with runtime-computable number of iterations
+mask.c:203:3: note: considering unrolling loop 1 at BB 5
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed: statement clobbers memory: __printf_chk (1, "Usage: %s [seq1] [seq2]\n", _1);
+mask.c:230:15: missed: statement clobbers memory: s1_16 = load_seq (_2);
+mask.c:233:5: missed: statement clobbers memory: error ();
+mask.c:236:15: missed: statement clobbers memory: s2_19 = load_seq (_3);
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed: statement clobbers memory: __printf_chk (1, "Error: sequences must match in length");
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed: statement clobbers memory: __printf_chk (1, "%25s; %10s; %15s; %15s\n", "title", "mask", "elapsed(ns)", "GB/s");
+mask.c:249:3: missed: statement clobbers memory: measure_mask ("Naive", mask, _9, _8, _7);
+mask.c:141:7: missed: statement clobbers memory: free (_25);
+mask.c:253:3: missed: statement clobbers memory: free (s1_16);
+mask.c:141:7: missed: statement clobbers memory: free (_24);
+mask.c:255:3: missed: statement clobbers memory: free (s2_19);

@@ -28,14 +28,14 @@ typedef struct
   u8 *bases;
 
   // Sequence length
-  // DONE u64 -> u8
-  u8 len;
+  
+  u64 len;
 
 } seq_t;
 
 // Global error variable
-// DONE u64 -> u8
-u8 err_id = 0;
+
+u64 err_id = 0;
 
 // Error messages
 const char *err_msg[] = {
@@ -153,19 +153,19 @@ void release_seq(seq_t *s)
     err_id = ERR_NULL_POINTER;
 }
 
-// DONE u64 -> u8
-void mask(const u8 *a, const u8 *b, u8 *c, u8 n)
+
+void static mask(const u8 * restrict a, const u8 * restrict b, u8 *c, u64 n)
 {
-  //DONE u64 -> u8
-  for (u8 i = 0; i < n; i++)
+
+  for (u64 i = 0; i < n; i++)
     c[i] = a[i] ^ b[i];
 }
 
-//DONE u64 -> u8
-void measure_mask(const char *title,void kernel(const u8 *, const u8 *, u8 *,u8),u8 *s1,u8 *s2,u8 n)
+
+void measure_mask(const char *title,void kernel(const u8 *, const u8 *, u8 *,u64),u8 *s1,u8 *s2,u64 n)
 {
-  // DONE u64 -> u8
-  u8 r = 3;
+  
+  u64 r = 3;
   f64 elapsed = 0.0;
   struct timespec t1, t2;
 
@@ -194,8 +194,7 @@ void measure_mask(const char *title,void kernel(const u8 *, const u8 *, u8 *,u8)
     //
     clock_gettime(CLOCK_MONOTONIC_RAW, &t1);
 
-    for ( // DONE u64 -> u8
-        u8 i = 0; i < r; i++)
+    for ( u64 i = 0; i < r; i++)
       kernel(s1, s2, cmp_mask, n);
 
     clock_gettime(CLOCK_MONOTONIC_RAW, &t2);
